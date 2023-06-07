@@ -10,12 +10,13 @@ import CartWidget from './CartWidget';
 
      <Navbar bg="success" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">WeedExpertos</Navbar.Brand>
+        <Navbar.Brand href="/">WeedExpertos</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Quienes somos?</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/nosotros">Quienes somos?</Nav.Link>
+            <Nav.Link href="/products">Productos</Nav.Link>
             <NavDropdown title="Semillas" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Femeneizadas</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
