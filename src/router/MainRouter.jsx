@@ -1,10 +1,13 @@
 import React from 'react';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import NavBar from "../components/NavBar";
+
 import Home from "../pages/Home";
-import Products from "../pages/Products";
-import ProductDetail from '../pages/ProductDetail';
-import Nosotros from '../pages/QuienesSomos';
+import Category from "../pages/Category";
+import Item from '../pages/Item';
+
 
 const MainRouter = () => {
   return (
@@ -13,9 +16,8 @@ const MainRouter = () => {
         <Routes>
             <Route exact path="*" element={<Home />} />
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/nosotros" element={<Nosotros />} />
-            <Route exact path="/products" element={<Products />} />
-            <Route path="/products/:productId" element={<ProductDetail />} />
+            <Route path="/category/:categoryId" element={<Category />} />
+            <Route path="/Item/:itemId" element={<Item />} />
         </Routes>
     </Router>
   )
