@@ -20,6 +20,7 @@ const Home = () => {
     const [productsData, setProductsData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [welcome, setWelcome] = useState(true);
 
     useEffect(() => {
         const db = getFirestore();
@@ -27,11 +28,14 @@ const Home = () => {
         getDocs(productCollection)
         .then((snapshot) => {
             setProductsData(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })));
-            
         })
         .catch((error) => setError(true))
         .then(() => setLoading(false));
     }, []);
+
+    setTimeout(() => {
+        setWelcome(false);
+      }, 3000);
 
     return (
         <div style={homeStyles} className='container d-flex justify-content-center'>
@@ -39,6 +43,8 @@ const Home = () => {
             <LoaderComponent />
             ) : error ? (
                 <div>Error</div>
+            ) : welcome ? (
+                    <div>Bienvenido</div>
             ) : (
             <ItemListContainer productsData={productsData} />
             )

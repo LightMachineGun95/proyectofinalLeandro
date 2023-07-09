@@ -6,6 +6,7 @@ const CartButtons = ({ productId }) => {
 
     const [state, setState] = useState(1);
     const { count, setCount } = useContext(CartContext);
+    console.log(productId)
     const handleMoreClick = () => {
         setState(state + 1);
     };
@@ -16,6 +17,7 @@ const CartButtons = ({ productId }) => {
         const existingProduct = count.products.find(
             (p) => p.productId === productId
         );
+        
         if (existingProduct) {
             existingProduct.qty += state;
         } else {

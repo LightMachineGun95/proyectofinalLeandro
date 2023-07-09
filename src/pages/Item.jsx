@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from 'react'
-
-
-import {collection, getDocs, getFirestore} from "firebase/firestore"
-import LoaderComponent from '../components/LoaderComponent';
 import ItemDetailContainer from '../components/ItemDetailContainer';
 import { useParams } from 'react-router-dom';
+import {doc, getDoc, getFirestore} from "firebase/firestore"
 
 const homeStyles = {
   width: "100vw",
@@ -15,39 +12,31 @@ const homeStyles = {
   justifyContent: "center",
 }
 
+
 const Item = () => {
-
-    const {itemId} = useParams();
-    const [productsData, setProductsData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-    useEffect(() => {
-        const db = getFirestore();
-        const productCollection = collection(db, "products");
-        getDocs(productCollection)
+  
+  const [productsData, setProductsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const {itemId} = useParams(); 
+  
+  useEffect(() => {
+    const db = getFirestore();
+        const productCollection = doc(db, "products", itemId);
+        getDoc(productCollection)
         .then((snapshot) => {
-            setProductsData(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data() })));
+            setProductsData([{id: snapshot.id, ...snapshot.data() }]);
             
         })
         .catch((error) => setError(true))
         .then(() => setLoading(false));
-    }, []);
-  
-  const productsFilteredById = productsData.filter(products => products.id === parseInt(itemId));
-  
+  }, [itemId]) 
+
   return(
-    <div style={homeStyles}>
-    {loading ? (
-    <LoaderComponent />
-    ) : error ? (
-        <div>Error</div>
-    ) : (
-    <ItemDetailContainer productsData={productsFilteredById} />
-    )
-    }
-    </div> 
+  <div style={homeStyles}>
+  <ItemDetailContainer productsData={productsData} />
+  </div>
   )
 }
 
-export default Item 
+export default Item;

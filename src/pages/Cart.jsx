@@ -43,16 +43,14 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
 
   const { count } = useContext(CartContext);
-
-  console.log(count);
-
+  
   useEffect(() => {
     const ids = count.products.map((product) => product.productId);
     fetchProductsByIds(ids)
       .then((res) => {
-        console.log(res);
         setProductsData(res);
       })
+      
       .catch((err) => setError(err))
       .then(() => setLoading(false));
   }, [count]);

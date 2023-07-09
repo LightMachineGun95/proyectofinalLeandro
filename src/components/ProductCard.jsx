@@ -18,7 +18,7 @@ const ProductCard = ({ productData }) => {
         <Card.Text as="h5">
           En stock: {productData.stock}
         </Card.Text>
-        <CartButtons />
+        <CartButtons productId={productData.id}/>
         <Link to={`/item/${productData.id}`}>Ir a detalle</Link>
       </Card.Body>
     </Card>

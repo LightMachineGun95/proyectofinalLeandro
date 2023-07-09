@@ -18,7 +18,7 @@ const MainRouter = () => {
             <Route exact path="/" element={<Home />} />
             <Route path="/category/:categoryId" element={<Category />} />
             <Route path="/Item/:itemId" element={<Item />} />
-            <Route path="/Cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart />} />
         </Routes>
     </Router>
   )
